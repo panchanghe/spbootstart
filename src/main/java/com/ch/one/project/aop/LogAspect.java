@@ -35,7 +35,7 @@ public class LogAspect {
 	public void doBefore(JoinPoint joinPoint) {
 		// 记录下请求内容
 		methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-		logger.info(methodName + "执行开始....................");
+		logger.info(methodName + "执行开始.................... ");
 		// 接收到请求，记录请求内容
 		attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		if (attributes == null) {
