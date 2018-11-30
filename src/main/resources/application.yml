@@ -1,0 +1,46 @@
+
+server:
+  port: 8088
+  servlet:
+    context-path: /one
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/one?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    connectionProperties: druid.stat.mergeSql=true
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  aop:
+    proxy-target-class: true
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapping/*.xml,classpath:sql/*.xml
+  type-aliases-package: com.ch.one.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#logback日志
+logging:
+  config: classpath:log/logback-spring.xml

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.one.project.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.one.project.entity.Goods" >
+    <id column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="gcode" property="gcode" jdbcType="VARCHAR" />
+    <result column="gname" property="gname" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+    <result column="image_name" property="imageName" jdbcType="VARCHAR" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gid, gcode, gname, price, store_name, intro, comment_count, image_name, image_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ch.one.project.entity.Goods" >
+    insert into goods (gid, gcode, gname, 
+      price, store_name, intro, 
+      comment_count, image_name, image_url
+      )
+    values (#{gid,jdbcType=INTEGER}, #{gcode,jdbcType=VARCHAR}, #{gname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{storeName,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, 
+      #{commentCount,jdbcType=INTEGER}, #{imageName,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.one.project.entity.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="gcode != null" >
+        gcode,
+      </if>
+      <if test="gname != null" >
+        gname,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="commentCount != null" >
+        comment_count,
+      </if>
+      <if test="imageName != null" >
+        image_name,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gcode != null" >
+        #{gcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null" >
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCount != null" >
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="imageName != null" >
+        #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.one.project.entity.Goods" >
+    update goods
+    <set >
+      <if test="gcode != null" >
+        gcode = #{gcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null" >
+        gname = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCount != null" >
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="imageName != null" >
+        image_name = #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.one.project.entity.Goods" >
+    update goods
+    set gcode = #{gcode,jdbcType=VARCHAR},
+      gname = #{gname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      image_name = #{imageName,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+
+  <insert id="batchInsert" parameterType="list">
+      insert into goods
+      (gcode, gname, price, store_name, intro, comment_count, image_name, image_url)
+      values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.gcode,jdbcType=VARCHAR}, #{item.gname,jdbcType=VARCHAR},
+      #{item.price,jdbcType=DECIMAL}, #{item.storeName,jdbcType=VARCHAR}, #{item.intro,jdbcType=VARCHAR},
+      #{item.commentCount,jdbcType=INTEGER}, #{item.imageName,jdbcType=VARCHAR}, #{item.imageUrl,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+</mapper>
