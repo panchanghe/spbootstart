@@ -22,13 +22,13 @@ public class FreemarkerUtil {
 	private static final String XML_PATH = "src/main/resources/sql/";
 
 	// 生成代码后台dao层路径
-	private static final String DAO_PATH = "src/main/java/com/ch.one/project/dao/";
+	private static final String DAO_PATH = "src/main/java/com/ch/one/project/dao/";
 
 	// 生成代码后台service层路径
-	private static final String SERVICE_PATH = "src/main/java/com/ch.one/project/service/";
+	private static final String SERVICE_PATH = "src/main/java/com/ch/one/project/service/";
 
 	// 生成代码后台controller层路径
-	private static final String CONTROLLER_PATH = "src/main/java/com/ch.one/project/controller/";
+	private static final String CONTROLLER_PATH = "src/main/java/com/ch/one/project/controller/";
 
 
 	// 配置类

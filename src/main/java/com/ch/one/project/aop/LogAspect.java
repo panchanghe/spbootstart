@@ -10,7 +10,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +42,11 @@ public class LogAspect {
 		}
 		request = attributes.getRequest();
 		logger.info("请求参数: " + JSON.toJSONString(getParams(request.getParameterMap())));
+	}
+
+	@AfterReturning("webLog()")
+	public void afterReturning(){
+		logger.info(methodName + "执行结束！！！！！！！！！！！！！");
 	}
 
 

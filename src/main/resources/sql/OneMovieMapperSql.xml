@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.one.project.dao.movie.OneMovieDao">
+  <resultMap id="BaseResultMap" type="com.ch.one.project.entity.OneMovie">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="img_code" jdbcType="VARCHAR" property="imgCode" />
+    <result column="movie_url" jdbcType="VARCHAR" property="movieUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, title, author, img_code, movie_url, create_time
+  </sql>
+  <select id="pageOneMovie" resultType="com.ch.one.project.entity.OneMovie">
+    select
+      <include refid="Base_Column_List"/>
+    from
+      one_movie
+    order by id desc
+  </select>
+
+
+</mapper>

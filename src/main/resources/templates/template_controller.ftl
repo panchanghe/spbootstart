@@ -29,12 +29,9 @@ import com.ch.one.project.service.${moduleName}.${className}Service;
 @RestController
 @RequestMapping("/${className?uncap_first}")
 public class ${className}Controller extends BaseController {
-	private static Logger LOG = LoggerFactory.getLogger(${className}Controller.class);
-	
 	@Autowired
 	private ${className}Service ${className?uncap_first}Service;
-	
-	
+
 	/**
 	 * 根据条件查询${tableZh}列表
 	 * @param map  前端传过来的查询条件的map集合
@@ -46,16 +43,10 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/get${className}List")
 	public Object get${className}List(@RequestParam Map<String, String> map, int page, int size) {
-		LOG.info("查询${tableZh}信息开始...");
-		
 		try {
-			SfUser user = (SfUser) getSession().getAttribute(SystemConstant.ONLINE_USER);
-			QueryResult<Map<String, String>> qr = ${className?uncap_first}Service.get${className}List(user.getPlatId(), map, page, size);
-			LOG.info("查询${tableZh}信息结束.");
-			return qr;
+			QueryResult<Map<String, String>> qr = ${className?uncap_first}Service.get${className}List( map, page, size);
+			return renderError();
 		} catch (Exception e) {
-			LOG.error("查询${tableZh}信息失败", e);
-			LOG.info("查询${tableZh}信息结束.");
 			return renderError("查看${tableZh}信息失败");
 		}
 		

@@ -31,8 +31,5 @@ public class OneInfoServiceImpl implements OneInfoService {
 		return oneInfoList;
 	}
 
-	@Scheduled(fixedDelay = 1000)
-	public void test(){
-		System.err.println("**************");
-	}
+
 }
